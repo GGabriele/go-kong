@@ -69,6 +69,8 @@ type Client struct {
 	Tags              AbstractTagService
 	Info              AbstractInfoService
 
+	Entity AbstractEntity
+
 	logger         io.Writer
 	debug          bool
 	CustomEntities AbstractCustomEntityService
@@ -151,6 +153,8 @@ func NewClient(baseURL *string, client *http.Client) (*Client, error) {
 	kong.Oauth2Credentials = (*Oauth2Service)(&kong.common)
 	kong.Tags = (*TagService)(&kong.common)
 	kong.Info = (*InfoService)(&kong.common)
+
+	kong.Entity = (*Entity)(&kong.common)
 
 	kong.CustomEntities = (*CustomEntityService)(&kong.common)
 	kong.Registry = custom.NewDefaultRegistry()
